@@ -1,17 +1,17 @@
 ---
-name: hello workflow
+name: ci
 
 on:
   push:
     branches: [main]
 
 jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: for hand-shake come close
+        run: echo "Come close"
 
-    greet:
-      runs-on: ubuntu-latest
-      steps:
-        - name: say hello to users
-          run: echo "Hello Dosto"
-
-        - name: say hello to username
-          run: echo "hello $USER"  
+      - name: raise hand towards each-other
+        run: echo "Hand shaked"
+    
