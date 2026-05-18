@@ -2,8 +2,10 @@
 name: ci
 
 on:
-  push:
-    branches: [main]
+  push:  # workflow_dispatch:
+    branches: [main]  # inputs:environment: description: this is the environment value where this workflow runs options: -dev, -stag, -prod
+    paths:
+      - "**.html"
 
 jobs:
   greet:
