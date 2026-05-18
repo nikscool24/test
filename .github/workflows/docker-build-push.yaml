@@ -1,5 +1,5 @@
 ---
-name: docker buold and push
+name: docker build and push
 
 on:
   push:
@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.GITHUB_REPO}}:${{github.ref}}      
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/docker-python-app:latest    
