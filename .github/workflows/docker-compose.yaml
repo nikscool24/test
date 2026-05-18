@@ -1,0 +1,6 @@
+services:
+  web:
+    image: ${{ vars.DOCKERHUB_USERNAME }}/docker-python-app:latest
+    container_name: pythonapp
+    ports:
+      - "80:80"
