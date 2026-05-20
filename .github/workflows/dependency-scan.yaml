@@ -5,9 +5,9 @@ on:
   workflow_call:
 
 permissions:
-  actions: read
+  actions: none
   contents: read
-  security-events: write
+  security-events: read
 
 
 
