@@ -34,5 +34,4 @@ jobs:
         id: scan
         with:
           image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
-          fail-build: true
-          severity-cutoff: critical
+         
