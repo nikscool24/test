@@ -56,7 +56,7 @@ jobs:
 
 # CodeQL for deep semantic analysis
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: python  # Add your languages
           queries: security-extended  # Include extended security queries
