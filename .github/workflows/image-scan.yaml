@@ -19,13 +19,13 @@ jobs:
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v4
         with:
-          image: ${{vars.DOCKERHUB_USERNAME}}/${{env.GITHUB_REPOSITORY}}:latest
+          image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
           severity_threshold: CRITICAL
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image: ${{vars.DOCKERHUB_USERNAME}}/${{env.GITHUB_REPOSITORY}}:latest
+          image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
           exit-code: '1'
           severity: 'CRITICAL,HIGH'    
 
@@ -33,6 +33,6 @@ jobs:
         uses: anchore/scan-action@v7
         id: scan
         with:
-          image: 'myapp:${{ github.sha }}'
+          image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
           fail-build: true
           severity-cutoff: 'CRITICAL,HIGH'   
