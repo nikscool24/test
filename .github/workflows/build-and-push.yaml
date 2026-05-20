@@ -28,4 +28,5 @@ jobs:
         id: scan
         uses: crazy-max/ghaction-container-scan@v4
         with:
+          image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
           dockerfile: ./Dockerfile          
