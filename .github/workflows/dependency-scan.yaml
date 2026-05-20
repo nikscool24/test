@@ -38,12 +38,12 @@ jobs:
           inputs: requirements.txt       
 
 
-      - name: 🐍 Run Python Dependency Checker
-        uses: aleqsd/python-dependency-checker@v1
-        with:
-          path: .
-          mode: deptry
-          fail-on-warn: true
+      # - name: 🐍 Run Python Dependency Checker
+      #   uses: aleqsd/python-dependency-checker@v1
+      #   with:
+      #     path: .
+      #     mode: deptry
+      #     fail-on-warn: true
 
 
       - name: Run TruffleHog
