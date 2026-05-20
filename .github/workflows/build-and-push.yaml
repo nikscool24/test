@@ -22,7 +22,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{vars.DOCKERHUB_USERNAME}}/${{env.GITHUB_REPOSITORY}}:latest 
+          tags: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest 
 
       - name: Scan for vulnerabilities
         id: scan
