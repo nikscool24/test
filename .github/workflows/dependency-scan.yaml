@@ -24,9 +24,9 @@ jobs:
 
       - name: Install and run pip-audit
         run: |
-          pip install --upgrade pip
+          
           pip install pip-audit
-          pip install --upgrade filelock requests urllib3
+          pip install --upgrade filelock requests urllib3 pip
           pip install --no-cache-dir -r requirements.txt
           pip-audit --strict --vulnerability-service osv 
           pip-audit -r requirements.txt
