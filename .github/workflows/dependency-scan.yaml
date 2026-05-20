@@ -26,7 +26,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pip-audit
-          pip install --upgrade filelock==3.20.3 requests==2.33.0 urllib3==2.7.0
+          pip install --upgrade filelock requests urllib3
           pip install --no-cache-dir -r requirements.txt
           pip-audit --strict --vulnerability-service osv 
           pip-audit -r requirements.txt
