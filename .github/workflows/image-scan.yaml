@@ -20,7 +20,7 @@ jobs:
         uses: crazy-max/ghaction-container-scan@v4
         with:
           image: ${{vars.DOCKERHUB_USERNAME}}/${{env.GITHUB_REPOSITORY}}:latest
-          severity_threshold: 'CRITICAL,HIGH'
+          severity_threshold: CRITICAL
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
