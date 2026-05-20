@@ -25,6 +25,6 @@ jobs:
 
     build:
       needs: [code-quality,secret-scan,dependency-scan,docker-scan]
-      uses: ./.github/workflows/buil-and-push.yaml
+      uses: ./.github/workflows/build-and-push.yaml
       secrets:
         inherit
