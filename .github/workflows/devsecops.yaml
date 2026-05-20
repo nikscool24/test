@@ -28,3 +28,7 @@ jobs:
       uses: ./.github/workflows/build-and-push.yaml
       secrets:
         inherit
+
+    trivy:
+      needs: [build]   
+      uses:  ./.github/workflows/image-scan.yaml
