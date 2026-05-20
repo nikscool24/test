@@ -29,10 +29,10 @@ jobs:
           # exit-code: '1'
           severity: 'CRITICAL,HIGH'    
 
-      - name: Scan image with Grype
-        uses: anchore/scan-action@v7
-        id: scan
-        with:
-          image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
-          fail-on-severity: none
-          continue-on-error: true
+      # - name: Scan image with Grype
+      #   uses: anchore/scan-action@v7
+      #   id: scan
+      #   with:
+      #     image: ${{vars.DOCKERHUB_USERNAME}}/${{github.event.repository.name}}:latest
+      #     fail-on-severity: none
+      #     continue-on-error: true
