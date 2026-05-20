@@ -4,6 +4,13 @@ name: Dependency Scan
 on:
   workflow_call:
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+
+
 jobs:
   dependency-scan:
     runs-on: ubuntu-latest
@@ -27,7 +34,6 @@ jobs:
           
           pip install pip-audit
           pip install --no-cache-dir -r requirements.txt
-          # pip-audit --strict --vulnerability-service osv 
           pip-audit -r requirements.txt
 
 
@@ -56,7 +62,7 @@ jobs:
 
 # CodeQL for deep semantic analysis
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4
+        uses: github/codeql-action/init@v3
         with:
           languages: python  # Add your languages
           queries: security-extended  # Include extended security queries
