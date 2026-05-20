@@ -1,0 +1,69 @@
+---
+name: Dependency Scan
+
+on:
+  workflow_call:
+
+jobs:
+  dependency-scan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        python-version: ["3.9","3.10","3.11","3.12","3.13","3.14"]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6
+
+
+      - name: Setup Python ${{matrix.python-version}}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{matrix.python-version}}
+
+
+      - name: Install and run pip-audit
+        run: |
+          pip install pip-audit
+          pip install --no-cache-dir -r requirements.txt
+          pip-audit --strict --vulnerability-service osv 
+          pip-audit -r requirements.txt
+
+
+      - name: Scan dependencies
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: requirements.txt       
+
+
+      - name: 🐍 Run Python Dependency Checker
+        uses: aleqsd/python-dependency-checker@v1
+        with:
+          path: .
+          mode: deptry
+          fail-on-warn: true
+
+
+      - name: Run TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified    
+
+
+# CodeQL for deep semantic analysis
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: python  # Add your languages
+          queries: security-extended  # Include extended security queries
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:python"    
